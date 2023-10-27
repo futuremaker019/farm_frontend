@@ -17,8 +17,6 @@ const Sticky = css`
   color: black;
 `;
 
-//
-
 const RingVariant = (radius, stroke = "10") => css`
   position: absolute;
   border-radius: 50%;
