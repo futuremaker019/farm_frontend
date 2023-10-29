@@ -4,13 +4,15 @@ import './index.css';
 import GlobalStyle from "./styles/Globalstyles";
 import {ThemeProvider} from "styled-components";
 import theme from "./styles/theme";
-import Router from "./Router";
+import router from "./Router";
+import {RouterProvider} from "react-router-dom";
 
-createRoot(document.getElementById('root')).render(
+const root = document.getElementById('root');
+createRoot(root).render(
     <>
         <GlobalStyle/>
         <ThemeProvider theme={theme}>
-            <Router/>
+            <RouterProvider router={router} />
         </ThemeProvider>
     </>
 )

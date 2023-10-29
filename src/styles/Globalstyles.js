@@ -9,6 +9,10 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-family: 'Noto Sans KR', sans-serif;
   }
+  
+  html {
+    font-size: 14px;
+  }
 
   a {
     text-decoration: none;
@@ -21,7 +25,7 @@ const GlobalStyle = createGlobalStyle`
     outline: none;
     border-radius: 3px;
   }
-
+  
   input {
     display: flex;
     outline: none;
