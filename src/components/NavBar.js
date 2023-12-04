@@ -4,20 +4,22 @@ import {Bars3Icon, ClockIcon, CubeTransparentIcon, XMarkIcon} from "@heroicons/r
 import styled from "styled-components";
 import {Link} from "react-router-dom";
 
+
+const NavigationDiv = styled.nav`
+  border-bottom: 1px solid rgb(0, 0, 0);
+`;
+
 export const Navbar = () => {
 
-    const Nav = styled.nav`
-        border-bottom: 1px solid rgb(0, 0, 0);
-    `;
 
     const [menuToggle, setMenuToggle] = useState(false);
 
     return (
-        <Nav>
+        <NavigationDiv>
             <div className="flex h-30 justify-between">
                 <div className={"flex items-center space-x-2 mx-4"}>
                     <div>
-                        <Link to={"/"} className="flex items-center py-5 px-2 text-gray-700">
+                        <Link to={"/stocks"} className="flex items-center py-5 px-2 text-gray-700">
                             <CubeTransparentIcon className="h-5 w-5 mr-2 text-blue-400"/>
                             <span className="font-bold">Home</span>
                         </Link>
@@ -54,6 +56,6 @@ export const Navbar = () => {
                     table
                 </a>
             </div>
-        </Nav>
+        </NavigationDiv>
     );
 };

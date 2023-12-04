@@ -66,7 +66,7 @@ export const ListItems = ({listItems}) => {
                                     <td className="px-6 py-4 text-sm font-medium whitespace-nowrap">
                                         {item.value}
                                     </td>
-                                    <td className="px-6 py-4 flex justify-center">
+                                    <td className="px-6 py-4 flex justify-center cursor-pointer">
                                         <EllipsisVerticalIcon className={"w-5"}/>
                                     </td>
                                 </tr>

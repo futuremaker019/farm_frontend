@@ -11,7 +11,6 @@ export const List = ({list}) => {
     return (
         <>
             <ListItems listItems={list}/>
-
         </>
     )
 }

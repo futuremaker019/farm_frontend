@@ -1,15 +1,8 @@
 import React from 'react';
+import {Link} from "react-router-dom";
+
 
 export const Pagination = ({currentPage, setCurrentPage, offset, total}) => {
-
-    /**
-     * paging 컴포넌트에서 전달해야 할 정보
-     *  1. prev, next
-     *  2. page 넘버들
-     *  3. 넘버를 클릭시 해당 리스트를 반환해야 함
-     */
-
-
 
     const visualPageCount = 10;
     let endPage = Math.ceil((currentPage / 10.0)) * 10;
@@ -22,56 +15,63 @@ export const Pagination = ({currentPage, setCurrentPage, offset, total}) => {
     const lastPagesCount = realEndPage % visualPageCount;
     const startPageAtLast = realEndPage - lastPagesCount + 1;
 
-    let prev = startPage > 1;
-    let next = endPage < realEndPage;
-
-    const pageNumberList = () => {
-        return Array.from({length: endPage}, (_, index) => index + 1);
+    const pageNumberList = () => Array.from({length: realEndPage}, (_, index) => index + 1);
+    const getPages = () => pageNumberList().slice(startPage - 1, endPage);
+    const moveToFirst = () => setCurrentPage(1);
+    const moveToLast = () => setCurrentPage(realEndPage);
+    const moveToPrev = () => {
+        if (currentPage > 1) {
+            setCurrentPage(prev => prev - 1);
+        }
+    }
+    const moveToNext = () => {
+        if (realEndPage <= currentPage) return;
+        setCurrentPage(prev => prev + 1);
     }
 
-    console.log(total)
-    console.log(pageNumberList())
-    console.log(endPage)
-    console.log(realEndPage)
-    console.log(lastPagesCount)
-    console.log(startPageAtLast)
+    console.log(currentPage)
 
     return (
-        <div className={"md:flex gap-3 mt-5"}>
-            {currentPage > visualPageCount ? (
-                <button onClick={() => setCurrentPage(1)}>
-                    First
-                </button>
-            ) : ''}
-            {/*{prev ? (*/}
-            {/*    <button onClick={setCurrentPage(prev => prev - 1)}>*/}
-            {/*        ◀*/}
-            {/*    </button>*/}
-            {/*) : ''}*/}
-            <ul className={"md:flex gap-3 cursor-pointer"}>
-                {pageNumberList().map((item, index) => {
+        <div className={"md:flex gap-3 mt-5 justify-center"}>
+            <ul className={"list-style-none flex"}>
+                {currentPage > visualPageCount ? (
+                    <li className={"cursor-pointer relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-700 dark:hover:text-white"}
+                        onClick={moveToFirst}>First</li>) : ''}
+                <li
+                    onClick={moveToPrev}
+                    className={"cursor-pointer relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-700 dark:hover:text-white"}
+                >
+                    Previous
+                </li>
+                {getPages().map((item, index) => {
                     return (
                         <li
                             key={index}
                             onClick={() => setCurrentPage(item)}
-                            className={currentPage === item ? "bg-blue" : "bg-amber-50"}
+                            className={currentPage === item
+                                ? "cursor-pointer dark:bg-neutral-700 dark:text-white relative block rounded px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300"
+                                : "cursor-pointer relative block rounded px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:hover:text-white"}
                         >
                             {item}
                         </li>
                     )
                 })}
+                <li
+                    onClick={moveToNext}
+                    className={"cursor-pointer relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:hover:text-white"}
+                >
+                    Next
+                </li>
+                {currentPage < startPageAtLast ? (
+                    <li
+                        className={"cursor-pointer relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:hover:text-white"}
+                        onClick={moveToLast}
+                    >Last</li>) : ''}
             </ul>
-            {/*{next ? (*/}
-            {/*    <button onClick={setCurrentPage(prev => prev + 1)}>*/}
-            {/*        ▶*/}
-            {/*    </button>*/}
-            {/*) : ''}*/}
-            {currentPage < startPageAtLast ? (
-                <button onClick={() => setCurrentPage(realEndPage)}>
-                    Last
-                </button>
-            ) : ''}
-            <span>{`${currentPage}/${realEndPage}`}</span>
+
+            <span
+                className={"cursor-pointer relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300"}
+            >{`${currentPage}/${realEndPage}`}</span>
         </div>
     )
 }
