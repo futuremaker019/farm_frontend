@@ -1,79 +1,125 @@
 import React from 'react';
+import {MagnifyingGlassIcon} from "@heroicons/react/24/solid";
 
 export const SearchPanel = () => {
     return (
         <>
-            <div className="flex flex-wrap -mx-3 mb-2">
-                <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                    <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                           htmlFor="grid-city">
-                        City
-                    </label>
-                    <input
-                        className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                        id="grid-city" type="text" placeholder="Albuquerque"/>
-                </div>
-                <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                    <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                           htmlFor="grid-state">
-                        State
-                    </label>
-                    <div className="relative">
-                        <select
-                            className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                            id="grid-state">
-                            <option>New Mexico</option>
-                            <option>Missouri</option>
-                            <option>Texas</option>
-                        </select>
-                        <div
-                            className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                            <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-                                 viewBox="0 0 20 20">
-                                <path
-                                    d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                    <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                           htmlFor="grid-zip">
-                        Zip
-                    </label>
-                    <input
-                        className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                        id="grid-zip" type="text" placeholder="90210"/>
-                </div>
-            </div>
-            <div className={"m-10 border border-amber-950 flex flex-col"}>
-                <div className="flex flex-wrap -mx-3 mb-6 border-black border">
-                    <div className="w-full md:w-2/5 px-3 mb-6 md:mb-0">
-                        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                               htmlFor="grid-first-name">
-                            First Name
+            <form>
+                <div className="grid gap-6 mb-6 md:grid-cols-2">
+                    <div>
+                        <label htmlFor="first_name"
+                               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            First name
                         </label>
-                        <input
-                            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                            id="grid-first-name" type="text" placeholder="Jane"/>
-                        <p className="text-red-500 text-xs italic">Please fill out this field.</p>
+                        <input type="text" id="first_name"
+                               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                               placeholder="John" required/>
                     </div>
-                    <div className="w-full md:w-2/5 px-3">
-                        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                               htmlFor="grid-last-name">
-                            Last Name
+                    <div>
+                        <label htmlFor="last_name"
+                               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Last name
                         </label>
-                        <input
-                            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                            id="grid-last-name" type="text" placeholder="Doe"/>
+                        <input type="text" id="last_name"
+                               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                               placeholder="Doe" required/>
                     </div>
-                    <div className="md:w-1/5 flex justify-center mt-5 mb-7">
-                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                            Search
-                        </button>
+                    <div>
+                        <label htmlFor="company"
+                               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Company
+                        </label>
+                        <input type="text" id="company"
+                               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                               placeholder="Flowbite" required/>
+                    </div>
+                    <div>
+                        <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Phone number
+                        </label>
+                        <input type="tel" id="phone"
+                               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                               placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required/>
+                    </div>
+                    <div>
+                        <label htmlFor="website"
+                               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Website URL
+                        </label>
+                        <input type="url" id="website"
+                               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                               placeholder="flowbite.com" required/>
+                    </div>
+                    <div>
+                        <label htmlFor="visitors"
+                               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Unique visitors (per month)
+                        </label>
+                        <input type="number" id="visitors"
+                               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                               placeholder="" required/>
                     </div>
                 </div>
-            </div>
+            </form>
+            <form>
+                <div className="flex">
+                    <label htmlFor="search-dropdown"
+                           className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Your Email</label>
+                    <button id="dropdown-button" data-dropdown-toggle="dropdown"
+                            className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-e-0 border-gray-300 dark:border-gray-700 dark:text-white rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+                            type="button">
+                        All categories
+                        <svg className="w-2.5 h-2.5 ms-2.5"
+                             aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg" fill="none"
+                             viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                        </svg>
+                    </button>
+                    <div id="dropdown"
+                         className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                        <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
+                            <li>
+                                <a href="#"
+                                   className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                    Shopping
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                   className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                    Images
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                   className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                    News
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                   className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                    Finance
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="relative w-full">
+                        <input type="search" id="search-dropdown"
+                               className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg rounded-s-gray-100 rounded-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+                               placeholder="Search" required/>
+                            <button type="submit"
+                                    className="absolute top-0 end-0 p-2.5 h-full text-sm font-medium text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                     fill="none" viewBox="0 0 20 20">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                          stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                                </svg>
+                            </button>
+                    </div>
+                </div>
+            </form>
         </>
     )
 }

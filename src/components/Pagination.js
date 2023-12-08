@@ -1,6 +1,4 @@
 import React from 'react';
-import {Link} from "react-router-dom";
-
 
 export const Pagination = ({currentPage, setCurrentPage, offset, total}) => {
 
@@ -32,7 +30,7 @@ export const Pagination = ({currentPage, setCurrentPage, offset, total}) => {
     console.log(currentPage)
 
     return (
-        <div className={"md:flex gap-3 mt-5 justify-center"}>
+        <div className={"md:flex gap-3 mt-10 justify-center"}>
             <ul className={"list-style-none flex"}>
                 {currentPage > visualPageCount ? (
                     <li className={"cursor-pointer relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-700 dark:hover:text-white"}
