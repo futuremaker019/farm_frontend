@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {listDummy} from "../../data/dummy";
+import {listDummy} from "../../utils/dummy";
 import {List} from "../../components/List";
 import {Pagination} from "../../components/Pagination";
 import {SearchPanel} from "../../components/SearchPanel";

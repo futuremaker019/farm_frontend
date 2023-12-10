@@ -1,7 +1,16 @@
 import React from 'react';
 import {EllipsisVerticalIcon} from "@heroicons/react/20/solid";
+import styled from "styled-components";
+import {useNavigate} from "react-router-dom";
 
-export const ListItems = ({listItems}) => {
+const Tr = styled.tr`
+    cursor: pointer;
+`;
+
+export const ListItems = ({listItems, moveTo}) => {
+
+    const navigate = useNavigate();
+
     return (
         <div className="flex flex-col mt-8">
             <div className="overflow-x-auto">
@@ -32,19 +41,19 @@ export const ListItems = ({listItems}) => {
                                     scope="col"
                                     className="px-6 py-3 text-xs font-bold text-left text-white uppercase "
                                 >
-                                    close
+                                    createdAt
                                 </th>
                                 <th
                                     scope="col"
                                     className="px-6 py-3 text-xs font-bold text-left text-white uppercase "
                                 >
-                                    value
+                                    modifiedBy
                                 </th>
                                 <th
                                     scope="col"
                                     className="px-6 py-3 text-xs font-bold text-left text-white uppercase "
                                 >
-                                    value
+                                    modifiedAt
                                 </th>
                                 <th
                                     scope="col"
@@ -56,7 +65,7 @@ export const ListItems = ({listItems}) => {
                             </thead>
                             <tbody className="divide-y divide-gray-200">
                             {listItems.map((item, index) => (
-                                <tr key={index}>
+                                <Tr key={index} onClick={() => navigate(`${moveTo}/${item.id}`)}>
                                     <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap">
                                         {index + 1}
                                     </td>
@@ -78,7 +87,7 @@ export const ListItems = ({listItems}) => {
                                     <td className="px-6 py-4 flex justify-center cursor-pointer">
                                         <EllipsisVerticalIcon className={"w-5"}/>
                                     </td>
-                                </tr>
+                                </Tr>
                             ))}
                             </tbody>
                         </table>
