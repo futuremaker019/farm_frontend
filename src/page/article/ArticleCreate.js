@@ -1,7 +1,7 @@
 import React, {useRef, useState} from "react";
-// import {createArticle} from "../../../api/article/ArticleService";
 import styled from "styled-components";
 import {nowDate} from "../../utils/utils";
+import {Server} from "../../api/MainService";
 
 const Warning = styled.p`
   color : red;
@@ -61,7 +61,7 @@ export const ArticleCreate = () => {
             return;
         }
 
-        // createArticle(article, attachments);
+        Server.create(`api/articles/create`, article, attachments);
     }
 
     return (
