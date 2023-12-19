@@ -11,8 +11,15 @@ export const Article = () => {
 
     const onLoad = async () => {
         const data = await Server.get(`api/articles/${id}`);
+        console.log(data);
         setArticle({...data});
-        setArticleComments([...data.articleCommentDtos]);
+        if (data.articleCommentDtos) {
+            setArticleComments([...data.articleCommentDtos]);
+        }
+
+        if (data.articleUploadDtos) {
+            setAttachments([...data.articleUploadDtos]);
+        }
     }
 
     useEffect(() => {
@@ -20,13 +27,14 @@ export const Article = () => {
     }, []);
 
     const uploadFiles = (e) => {
-        let files = []
+        const files = [];
         Array.from(e.target.files).forEach(file => files.push(file))
         setAttachments([...attachments, ...files]);
     }
 
     const deleteFile = (index) => {
         // TODO: file delete api 추가 해야함
+        setAttachments(attachments.filter((item, itemIdx) => itemIdx !== index));
         console.log(index)
     }
 
@@ -90,16 +98,14 @@ export const Article = () => {
                                    htmlFor="file">
                                 파일
                             </label>
-                            {attachments.length > 0 && attachments.map((attachment, index) =>
-                                <p key={index} className={"md:flex gap-3 justify-between"}>
-                                    <span>{attachment.name}</span>
-                                    <button
-                                        onClick={(e, index) => deleteFile(index)}
-                                    >
-                                        X
-                                    </button>
-                                </p>
-                            )}
+                            <div className={"md:flex gap-3 flex-col"}>
+                                {attachments.length > 0 && attachments.map((attachment, index) =>
+                                    <p key={index} className={"md:flex justify-between"}>
+                                        <span className={"cursor-pointer"}>{attachment.name}</span>
+                                        <button onClick={() => deleteFile(index)}> X</button>
+                                    </p>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>

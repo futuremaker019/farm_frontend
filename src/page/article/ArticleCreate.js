@@ -2,9 +2,10 @@ import React, {useRef, useState} from "react";
 import styled from "styled-components";
 import {nowDate} from "../../utils/utils";
 import {Server} from "../../api/MainService";
+import {useNavigate} from "react-router-dom";
 
 const Warning = styled.p`
-  color : red;
+  color: red;
   margin-bottom: 1.5rem;
 `
 
@@ -25,6 +26,8 @@ export const ArticleCreate = () => {
 
     const [attachments, setAttachments] = useState(null);
     const attachmentList = attachments ? [...attachments] : [];
+
+    const navigate = useNavigate();
 
     const handleUploadFiles = (e) => {
         const files = e.target.files;
@@ -61,7 +64,10 @@ export const ArticleCreate = () => {
             return;
         }
 
-        Server.create(`api/articles/create`, article, attachments);
+        Server.create(`api/articles/create`, article, attachments)
+            .then(response => {
+                navigate(`/articles/${response}`)
+            })
     }
 
     return (

@@ -29,12 +29,12 @@ export const Server = {
         files.forEach(file => formData.append("attachments", file))
         formData.append("dto", new Blob([JSON.stringify(body)], {type: "application/json"}))
         try {
-            fetch(`${process.env.REACT_APP_SERVER_HOST}/${url}`, {
+            return fetch(`${process.env.REACT_APP_SERVER_HOST}/${url}`, {
                 method: 'POST',
                 mode: 'cors',
                 body: formData
-            }).then((response) => {
-                console.log(response.json())
+            }).then(response => {
+                return response.json();
             })
         } catch (e) {
             new Error(e);
