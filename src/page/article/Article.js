@@ -38,6 +38,11 @@ export const Article = () => {
         console.log(index)
     }
 
+    const handleDownload = async (id) => {
+        const file = await Server.download(`api/files/download/${id}`);
+        console.log(file);
+    }
+
     return (
         <div>
             <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
@@ -101,7 +106,7 @@ export const Article = () => {
                             <div className={"md:flex gap-3 flex-col"}>
                                 {attachments.length > 0 && attachments.map((attachment, index) =>
                                     <p key={index} className={"md:flex justify-between"}>
-                                        <span className={"cursor-pointer"}>{attachment.name}</span>
+                                        <span className={"cursor-pointer"} onClick={() => handleDownload(attachment.id)}>{attachment.name}</span>
                                         <button onClick={() => deleteFile(index)}> X</button>
                                     </p>
                                 )}

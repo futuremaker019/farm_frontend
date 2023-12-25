@@ -39,5 +39,31 @@ export const Server = {
         } catch (e) {
             new Error(e);
         }
+    },
+    download: (url) => {
+        return fetch(`${process.env.REACT_APP_SERVER_HOST}/${url}`, {
+            method: 'GET',
+            mode: 'cors',
+        }).then(response => {
+            if (response.ok) {
+                return response.blob();
+            }
+        }).catch(error => {
+            console.error(`error:  ${error}`);
+            throw error;
+        })
     }
 }
+
+/**
+ *  fetch 예시
+ */
+// fetch(`${process.env.REACT_APP_SERVER_HOST}/user/signin`, {
+//   method: 'POST',
+//   headers: { 'Content-Type': 'application/json' },
+//   mode: 'cors',
+//   body: JSON.stringify({
+//     email: emailValue,
+//     password: pwValue,
+//   }),
+// })
