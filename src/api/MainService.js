@@ -13,7 +13,7 @@ export const Server = {
         })
     },
     post: (url, body) => {
-        fetch(`${process.env.REACT_APP_SERVER_HOST}/${url}`, {
+        return fetch(`${process.env.REACT_APP_SERVER_HOST}/${url}`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             mode: 'cors',
@@ -22,6 +22,7 @@ export const Server = {
             return response.json();
         }).catch((error) => {
             console.log(error);
+            new Error(error);
         });
     },
     create: (url, body, files) => {

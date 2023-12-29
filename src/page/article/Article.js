@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {Server} from "../../api/MainService";
+import classNames from "classnames/bind";
 
 export const Article = () => {
 
@@ -8,11 +9,13 @@ export const Article = () => {
     const [article, setArticle] = useState({});
     const [articleComments, setArticleComments] = useState([]);
     const [attachments, setAttachments] = useState([]);
+    const [content, setContent] = useState("");
+    const [toggleContent, setToggleContent] = useState(false);
 
     const onLoad = async () => {
         const data = await Server.get(`api/articles/${id}`);
-        console.log(data);
         setArticle({...data});
+        setContent(data.content);
         if (data.articleCommentDtos) {
             setArticleComments([...data.articleCommentDtos]);
         }
@@ -26,6 +29,11 @@ export const Article = () => {
         onLoad();
     }, []);
 
+    const onChangeContent = (event) => {
+        const {value, name} = event.target;
+        setContent(value);
+    }
+
     const uploadFiles = (e) => {
         const files = [];
         Array.from(e.target.files).forEach(file => files.push(file))
@@ -38,9 +46,31 @@ export const Article = () => {
         console.log(index)
     }
 
-    const handleDownload = async (id) => {
-        const file = await Server.download(`api/files/download/${id}`);
-        console.log(file);
+    const handleDownload = async (id, fileName) => {
+        // fetch로 생성된 blob을 받아준다.
+        const blob = await Server.download(`api/files/download/${id}`);
+        // blob을 이용하여
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute('download', fileName);
+        link.click();
+
+        link.remove();
+        window.URL.revokeObjectURL(url);
+    }
+
+    const handleContent = (event) => {
+        const {value, name} = event.target;
+        if (event.key === "Escape") {
+            setToggleContent(false);
+            setContent(article.content);
+        }
+
+        if (event.key === "Enter") {
+            console.log("enter")
+            // 업데이트 해주면 된다.
+        }
     }
 
     return (
@@ -77,7 +107,18 @@ export const Article = () => {
                                htmlFor="content">
                             내용
                         </label>
-                        <p>{article.content}</p>
+                            { !toggleContent
+                                ? <p onClick={() => setToggleContent(!toggleContent)}>{article.content}</p>
+                                : <textarea
+                                    className="block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-7 px-4 mb-3"
+                                    placeholder={"본문을 입력해주세요."}
+                                    name={"content"}
+                                    value={content}
+                                    id={"content"}
+                                    onKeyUp={(event) => handleContent(event)}
+                                    onChange={onChangeContent}
+                                />
+                            }
                     </div>
                 </div>
                 <div className="-mx-3 md:flex mb-2">
@@ -106,7 +147,7 @@ export const Article = () => {
                             <div className={"md:flex gap-3 flex-col"}>
                                 {attachments.length > 0 && attachments.map((attachment, index) =>
                                     <p key={index} className={"md:flex justify-between"}>
-                                        <span className={"cursor-pointer"} onClick={() => handleDownload(attachment.id)}>{attachment.name}</span>
+                                        <span className={"cursor-pointer"} onClick={() => handleDownload(attachment.id, attachment.name)}>{attachment.name}</span>
                                         <button onClick={() => deleteFile(index)}> X</button>
                                     </p>
                                 )}

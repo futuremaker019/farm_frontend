@@ -1,6 +1,6 @@
 import React, {useRef, useState} from "react";
 import styled from "styled-components";
-import {nowDate} from "../../utils/utils";
+import {nowDate} from "../../utils/utils.js";
 import {Server} from "../../api/MainService";
 import {useNavigate} from "react-router-dom";
 

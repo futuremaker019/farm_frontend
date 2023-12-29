@@ -9,6 +9,8 @@ import {Main} from "./page/main/Main";
 import {Articles} from "./page/article/Articles";
 import {Article} from "./page/article/Article";
 import {ArticleCreate} from "./page/article/ArticleCreate";
+import {Assets} from "./page/asset/Assets";
+import {Asset} from "./page/asset/Asset";
 
 const router = createBrowserRouter([
     {
@@ -27,6 +29,18 @@ const router = createBrowserRouter([
             { index: true, element: <Articles /> },
             { path: "/articles/:id", element: <Article /> },
             { path: "/articles/create", element: <ArticleCreate /> },
+            // path: "events/:id", pathvarialbe 을 이런식으로 사용하면 될듯
+            // { path: "third", element: <Third /> },
+        ],
+    },
+    {
+        path: "/assets",
+        element: <BaseLayout />,
+        errorElement: <NotFound />,
+        children: [
+            { index: true, element: <Assets /> },
+            { path: "/assets/:id", element: <Asset /> },
+            // { path: "/assets/create", element: <ArticleCreate /> },
             // path: "events/:id", pathvarialbe 을 이런식으로 사용하면 될듯
             // { path: "third", element: <Third /> },
         ],

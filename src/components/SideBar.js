@@ -31,33 +31,33 @@ export const SideBar = (props) => {
                 </div>
                 <nav className="block text-white text-base font-semibold pt-3">
                     <Link
-                        to={"/stocks/upload"}
-                        className="flex items-center opacity-75 hover:opacity-100 py-4 pl-6"
-                    >
-                        <PresentationChartBarIcon className={`mr-3 h-6 w-6`}/>
-                        데이터 업로드
-                    </Link>
-                    <Link
                         to={"/articles"}
                         className="flex items-center opacity-75 hover:opacity-100 py-4 pl-6"
                     >
                         <TableCellsIcon className={`mr-3 h-6 w-6`}/>
                         게시판
                     </Link>
-                    <a
-                        href="#"
+                    <Link
+                        to={"/assets"}
                         className="flex items-center opacity-75 hover:opacity-100 py-4 pl-6"
                     >
                         <FolderMinusIcon className={`mr-3 h-6 w-6`}/>
-                        Forms
-                    </a>
-                    <a
-                        href="#"
+                        자산
+                    </Link>
+                    <Link
+                        to={"/settings"}
                         className="flex items-center opacity-75 hover:opacity-100 py-4 pl-6"
                     >
                         <ArchiveBoxArrowDownIcon className={`mr-3 h-6 w-6`}/>
-                        Content
-                    </a>
+                        환경설정
+                    </Link>
+                    <Link
+                        to={"/stocks/upload"}
+                        className="flex items-center opacity-75 hover:opacity-100 py-4 pl-6"
+                    >
+                        <PresentationChartBarIcon className={`mr-3 h-6 w-6`}/>
+                        데이터 업로드
+                    </Link>
                     <a
                         href="#"
                         className="flex items-center opacity-75 hover:opacity-100 py-4 pl-6"

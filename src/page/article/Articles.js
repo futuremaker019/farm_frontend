@@ -17,8 +17,14 @@ export const Articles = () => {
 
     const onLoad = async () => {
         const data = await Server.get(`api/articles?page=${currentPage - 1}&size=${offset}`);
-        setData({...data});
-        setArticles([...data.content])
+
+        console.log(data)
+        if (data) {
+            setData({...data});
+        }
+        if (data.content) {
+            setArticles([...data.content])
+        }
     }
 
     useEffect(() => {

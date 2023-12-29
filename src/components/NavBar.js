@@ -19,7 +19,7 @@ export const Navbar = () => {
             <div className="flex h-30 justify-between">
                 <div className={"flex items-center space-x-2 mx-4"}>
                     <div>
-                        <Link to={"/stocks"} className="flex items-center py-5 px-2 text-gray-700">
+                        <Link to={"/"} className="flex items-center py-5 px-2 text-gray-700">
                             <CubeTransparentIcon className="h-5 w-5 mr-2 text-blue-400"/>
                             <span className="font-bold">Home</span>
                         </Link>

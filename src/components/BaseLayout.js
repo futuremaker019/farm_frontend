@@ -2,6 +2,7 @@ import React from "react";
 import {Navbar} from "./NavBar";
 import {SideBar} from "./SideBar";
 import {Outlet} from "react-router-dom";
+import {SideBar2} from "./SideBar2";
 
 export const BaseLayout = () => {
     return (
